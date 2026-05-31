@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --emerald: #0f3d2e;
+    --gold: #f3b942;
+    --cream: #f9f9f9;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-emerald-deep font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--emerald);
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-emerald shadow-gold hover:bg-gold-light hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/70 text-white hover:bg-white hover:text-emerald;
+  }
+
+  .btn-emerald {
+    @apply btn bg-emerald text-cream hover:bg-emerald-mid hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply btn border border-emerald/30 text-emerald hover:border-emerald hover:bg-emerald hover:text-cream;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-gold-dark;
+  }
+
+  .section {
+    @apply scroll-mt-24 py-20 sm:py-28;
+  }
+
+  .card-lift {
+    @apply transition-all duration-300 hover:-translate-y-1.5 hover:shadow-cardHover;
+  }
+
+  /* Hide scrollbar for the sticky menu tab bar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Decorative gold gradient divider line */
+.gold-rule {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(243, 185, 66, 0.9),
+    transparent
+  );
+}
