@@ -7,6 +7,7 @@ import Services from './components/Services'
 import MenuExplorer from './components/MenuExplorer'
 import Tiers from './components/Tiers'
 import About from './components/About'
+import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
 import WhatsAppWidget from './components/WhatsAppWidget'
 import BookingWizard from './components/BookingWizard'
@@ -56,6 +57,7 @@ export default function App() {
         <MenuExplorer />
         <Tiers onBook={openBooking} />
         <About />
+        <Testimonials />
       </main>
       <Footer onBook={() => openBooking()} />
 

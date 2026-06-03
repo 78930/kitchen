@@ -28,9 +28,9 @@ export default function Navbar({ onBook }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-[100] transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
         scrolled
-          ? 'bg-emerald-deep/90 shadow-lg shadow-emerald-deep/20 backdrop-blur-xl'
+          ? 'bg-black/95 shadow-lg shadow-black/40 backdrop-blur-xl border-b border-white/5'
           : 'bg-transparent'
       }`}
     >
@@ -77,7 +77,7 @@ export default function Navbar({ onBook }) {
       {/* Mobile overlay */}
       {open && (
         <div className="lg:hidden">
-          <div className="animate-floatIn border-t border-white/10 bg-emerald-deep/95 backdrop-blur-xl">
+          <div className="animate-floatIn border-t border-white/10 bg-black/97 backdrop-blur-xl">
             <ul className="container-x flex flex-col gap-1 py-4">
               {LINKS.map((l) => (
                 <li key={l.href}>

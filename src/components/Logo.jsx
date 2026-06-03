@@ -9,7 +9,7 @@ export default function Logo({ size = 44 }) {
       aria-label="The Madhu's Kitchen logo"
     >
       {/* Background */}
-      <rect width="44" height="44" rx="10" fill="#0F3D2E" />
+      <rect width="44" height="44" rx="10" fill="#FFA500" />
       {/* Gold border */}
       <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="9.25" stroke="#F3B942" strokeWidth="1.5" strokeOpacity="0.55" />
 
@@ -21,7 +21,7 @@ export default function Logo({ size = 44 }) {
       {/* Inner flame highlight */}
       <path
         d="M22 15.5 C21.2 13.5 20.8 11.5 22 9.2 C23.2 11.5 22.8 13.5 22 15.5Z"
-        fill="#0F3D2E"
+        fill="#FFA500"
         opacity="0.35"
       />
 

@@ -1,6 +1,7 @@
 import Booking from '../models/Booking.js'
 import { validateBooking } from '../middleware/validate.js'
 import { sendBookingEmails } from '../utils/mailer.js'
+import { sendWhatsAppAlert } from '../utils/whatsapp.js'
 
 // POST /api/bookings
 export async function createBooking(req, res) {
@@ -12,10 +13,17 @@ export async function createBooking(req, res) {
   try {
     const booking = await Booking.create(data)
 
-    // Fire confirmation emails without blocking the response on failure.
-    sendBookingEmails(booking.toObject()).catch((e) =>
-      console.error('Booking email error:', e.message),
-    )
+    const b = booking.toObject()
+
+    // Fire confirmation emails & WhatsApp alert without blocking the response.
+    sendBookingEmails(b).catch((e) => console.error('Booking email error:', e.message))
+    sendWhatsAppAlert(
+      `🍽️ New Booking!\n` +
+      `Name: ${b.customer_name}\n` +
+      `Event: ${b.event_type} on ${new Date(b.event_date).toDateString()}\n` +
+      `Guests: ${b.guest_count}\n` +
+      `Phone: ${b.phone}`
+    ).catch(() => {})
 
     return res.status(201).json({
       message: 'Booking received. A confirmation email is on its way.',

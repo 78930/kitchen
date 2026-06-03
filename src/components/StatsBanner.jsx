@@ -20,9 +20,9 @@ function useCountUp(target, run, duration = 1600) {
 }
 
 const STATS = [
-  { icon: Award, value: 15, suffix: '+', label: 'Years Hands-On Experience' },
-  { icon: Users, value: 5, suffix: 'K+', label: 'Happy Clients Served' },
-  { icon: Sparkles, value: 100, suffix: '%', label: 'Immaculate Hygiene Standards' },
+  { icon: Award,    value: 15,  suffix: '+',  label: 'Years Hands-On Experience' },
+  { icon: Users,    value: 5,   suffix: 'K+', label: 'Happy Clients Served' },
+  { icon: Sparkles, value: 100, suffix: '%',  label: 'Immaculate Hygiene Standards' },
 ]
 
 export default function StatsBanner() {
@@ -33,12 +33,7 @@ export default function StatsBanner() {
     const el = ref.current
     if (!el) return
     const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setRun(true)
-          obs.disconnect()
-        }
-      },
+      ([e]) => { if (e.isIntersecting) { setRun(true); obs.disconnect() } },
       { threshold: 0.4 },
     )
     obs.observe(el)
@@ -46,12 +41,19 @@ export default function StatsBanner() {
   }, [])
 
   return (
-    <section ref={ref} className="relative z-10 bg-emerald text-white">
-      <div className="container-x grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+    <section ref={ref} className="relative z-10 overflow-hidden bg-black">
+      {/* Subtle gold top border */}
+      <div className="gold-rule" />
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_100%_at_50%_50%,rgba(243,185,66,0.05),transparent)]" />
+
+      <div className="container-x grid grid-cols-1 divide-y divide-white/8 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
         {STATS.map((s) => (
           <Stat key={s.label} {...s} run={run} />
         ))}
       </div>
+
+      <div className="gold-rule" />
     </section>
   )
 }
@@ -59,14 +61,15 @@ export default function StatsBanner() {
 function Stat({ icon: Icon, value, suffix, label, run }) {
   const count = useCountUp(value, run)
   return (
-    <div className="flex items-center justify-center gap-4 px-6 py-10 text-center sm:flex-col sm:gap-3">
-      <Icon className="h-9 w-9 shrink-0 text-gold" />
+    <div className="group flex items-center justify-center gap-4 px-8 py-12 text-center transition-all duration-300 hover:bg-white/3 sm:flex-col sm:gap-4">
+      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-gold/20 bg-gold/10 transition-all duration-300 group-hover:border-gold/40 group-hover:bg-gold/15">
+        <Icon className="h-7 w-7 text-gold" />
+      </span>
       <div className="text-left sm:text-center">
         <div className="font-serif text-4xl font-bold text-gold sm:text-5xl">
-          {count}
-          <span>{suffix}</span>
+          {count}<span>{suffix}</span>
         </div>
-        <p className="mt-1 text-sm font-medium uppercase tracking-wider text-white/75">{label}</p>
+        <p className="mt-1.5 text-xs font-semibold uppercase tracking-widest text-white/50">{label}</p>
       </div>
     </div>
   )

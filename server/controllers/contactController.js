@@ -1,6 +1,7 @@
 import ContactMessage from '../models/ContactMessage.js'
 import { validateContact } from '../middleware/validate.js'
 import { sendContactEmails } from '../utils/mailer.js'
+import { sendWhatsAppAlert } from '../utils/whatsapp.js'
 
 // POST /api/contact
 export async function createContact(req, res) {
@@ -11,9 +12,16 @@ export async function createContact(req, res) {
 
   try {
     const msg = await ContactMessage.create(data)
-    sendContactEmails(msg.toObject()).catch((e) =>
-      console.error('Contact email error:', e.message),
-    )
+    const c = msg.toObject()
+
+    sendContactEmails(c).catch((e) => console.error('Contact email error:', e.message))
+    sendWhatsAppAlert(
+      `📩 New Enquiry!\n` +
+      `Name: ${c.name}\n` +
+      `Email: ${c.email}\n` +
+      `Phone: ${c.phone || '—'}\n` +
+      `Message: ${c.message.slice(0, 120)}`
+    ).catch(() => {})
     return res.status(201).json({ message: 'Message received. We will be in touch soon.' })
   } catch (err) {
     console.error('createContact error:', err)

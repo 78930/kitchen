@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 
-const EMERALD = '#0F3D2E'
+const EMERALD = '#FFA500'
 const GOLD = '#F3B942'
 
 let transporter = null
@@ -38,7 +38,7 @@ function shell(title, bodyHtml) {
             ${bodyHtml}
           </td></tr>
           <tr>
-            <td style="background:${EMERALD};padding:20px 32px;text-align:center;color:#cdddd5;font-size:12px;">
+            <td style="background:${EMERALD};padding:20px 32px;text-align:center;color:#fde8d8;font-size:12px;">
               Plot No. 4, RTC Colony, Tirumalgherry, Secunderabad — 500015<br/>
               +91 63036 44615 · sa.hyderabadcaterers@gmail.com
             </td>

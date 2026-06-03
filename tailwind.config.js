@@ -5,10 +5,10 @@ export default {
     extend: {
       colors: {
         emerald: {
-          DEFAULT: '#0F3D2E',
-          deep: '#0B2C21',
-          mid: '#16513C',
-          soft: '#1E6B4F',
+          DEFAULT: '#FFA500',
+          deep: '#7A4200',
+          mid: '#CC8400',
+          soft: '#FFB733',
         },
         gold: {
           DEFAULT: '#F3B942',

@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --emerald: #0f3d2e;
+    --emerald: #ffa500;
     --gold: #f3b942;
     --cream: #f9f9f9;
   }
@@ -17,16 +17,13 @@
     @apply bg-cream text-emerald-deep font-sans antialiased;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4 {
     @apply font-serif;
   }
 
   ::selection {
     background: var(--gold);
-    color: var(--emerald);
+    color: #000;
   }
 }
 
@@ -40,23 +37,23 @@
   }
 
   .btn-gold {
-    @apply btn bg-gold text-emerald shadow-gold hover:bg-gold-light hover:-translate-y-0.5 active:translate-y-0;
+    @apply btn bg-gold text-black shadow-gold hover:bg-gold-light hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98];
   }
 
   .btn-ghost {
-    @apply btn border border-white/70 text-white hover:bg-white hover:text-emerald;
+    @apply btn border border-white/60 text-white hover:bg-white hover:text-black active:scale-[0.98];
   }
 
   .btn-emerald {
-    @apply btn bg-emerald text-cream hover:bg-emerald-mid hover:-translate-y-0.5;
+    @apply btn bg-emerald text-black hover:bg-emerald-mid hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply btn border border-emerald/30 text-emerald hover:border-emerald hover:bg-emerald hover:text-cream;
+    @apply btn border border-emerald/30 text-emerald hover:border-emerald hover:bg-emerald hover:text-black;
   }
 
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.28em] text-gold-dark;
+    @apply text-xs font-semibold uppercase tracking-[0.30em] text-gold-dark;
   }
 
   .section {
@@ -67,23 +64,22 @@
     @apply transition-all duration-300 hover:-translate-y-1.5 hover:shadow-cardHover;
   }
 
+  .field-input {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 outline-none transition focus:border-[#25D366] focus:ring-2 focus:ring-[#25D366]/20;
+  }
+
   /* Hide scrollbar for the sticky menu tab bar */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
-/* Decorative gold gradient divider line */
+/* Gold gradient divider line */
 .gold-rule {
   height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(243, 185, 66, 0.9),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(243, 185, 66, 0.9), transparent);
+}
+
+/* Subtle section transition — light sections get a very faint top rule */
+.section + .section {
+  border-top: 1px solid rgba(243, 185, 66, 0.08);
 }
